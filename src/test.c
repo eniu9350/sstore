@@ -116,6 +116,7 @@ void cb_start(evutil_socket_t fd, short events, void* arg)
 }
 lua_State* L;
 
+
 int main()
 {
 				manager_mr* mgr;
@@ -144,13 +145,15 @@ int main()
 				//init lua environment
 				sstore_lua_init();
 
-
+				//init db
 				mgr = mr_init();
+				//clear data
+				mr_cleardata(mgr);
 
 				base = event_base_new();
 
 				//nuser = 5000*1000;
-				nuser = 1000;
+				nuser = 200000;
 
 				/*
 					 for(i=0;i<nuser;i++)	{

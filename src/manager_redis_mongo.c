@@ -93,3 +93,12 @@ manager_mr* mr_init()
 				mr_init_mongo(mgr);
 				return mgr;
 }
+
+void mr_cleardata(manager_mr* mgr)
+{
+	if(mongo_cmd_drop_db(mgr->m, "sstore")!=MONGO_OK)	{
+		printf("clear mongodb db error in mr_cleardata()\n");
+		}
+	redisCommand(mgr->r, "FLUSHALL");
+	
+}

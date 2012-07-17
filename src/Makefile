@@ -2,7 +2,7 @@ CC=gcc
 ww=aa
 
 all: clean
-	$(CC) --std=c99 -g -o test -I/usr/include -L. -L/usr/local/lib  mapex.c util.c object_framework.c test.c manager_redis_mongo.c input_generator.c -lm -levent -lhiredis -lmongoc -llua
+	$(CC) --std=c99 -g -o test -I/usr/include -L. -L/usr/local/lib  mapex.c util.c object_framework.c main.c manager_redis_mongo.c input_generator.c -lm -levent -lhiredis -lmongoc -llua
 
 e: clean
 	$(CC) --std=c99 -I/usr/local/include -I/usr/include -L/usr/local/lib -L/usr/lib -o e e.c -lmongoc -lm -llua

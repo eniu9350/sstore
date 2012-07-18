@@ -1,1 +1,40 @@
 mongo destroy
+
+
+analyze perf at the moment when completion time is longer than expected
+
+
+===========
+#rm(list=ls(all=TRUE));
+t<-read.table("I:\\mongodb205\\ext_temp\\freq_1067459324.txt", header=FALSE);
+mindate=1;
+maxdate=148;
+v<-c(t[,2])
+w<-c()
+tfreq<-matrix(0,nrow=maxdate-mindate+1,ncol=2)
+for(i in mindate:maxdate){
+tfreq[i-mindate+1,1]=i;
+}
+i<-0
+for (i in 1:dim(t)[1]) {
+
+#print(e);
+if(t[i,1]==2012)
+{
+#print(t[i,2]);
+j=t[i,2]
+tfreq[j-mindate+1,2]=tfreq[j-mindate+1,2]+1;
+}
+
+}
+
+plot(c(tfreq[,1]),c(tfreq[,2]),pch=20);
+
+mean(c(tfreq[,2]));
+var(c(tfreq[,2]));
+sum(c(tfreq[,2]));
+
+
+#vv=c(t[,2])
+#ww = table(vv)
+#plot(ww)

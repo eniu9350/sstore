@@ -60,6 +60,14 @@ int main()
 				attnames[0] = v1;
 				attnames[1] = v2;
 
+				//for debug
+				FILE* ftime;
+
+				long tmin=0;
+				long tmax=0;	
+				long temustart=0;
+				long temuend=0;
+
 				//init lua environment
 				sstore_lua_init();
 
@@ -71,13 +79,19 @@ int main()
 				base = event_base_new();
 
 				//nuser = 5000*1000;
-				nuser = 200000;
+				nuser = 250000;
 
 				mrof_register(mgr, "user", attnames, 2);
 
 				//mmm: prepair user	
 				users = (user**)malloc(nuser*sizeof(user*));
 				generate_users(nuser, users);
+
+
+				//debug: save starttime and endtime to file
+				if((ftime = fopen("../analysis/time", "w"))==NULL)	{
+					printf("time file error!\n");
+					}
 
 				//mmm: prepair tvstart
 				tvstart = (struct timeval*)malloc(sizeof(struct timeval));
@@ -94,6 +108,11 @@ int main()
 								//printf("u->a=%d, tvstart->tvsec=%ld\n", u->a, tvstart->tv_sec);
 								tvthen->tv_sec = tvstart->tv_sec + u->a;
 								tvthen->tv_usec = tvstart->tv_usec;
+								
+								fprintf(ftime, "%ld ", tvthen->tv_sec);
+								if(tmin==0 || tvthen->tv_sec<tmin)	{
+									tmin = tvthen->tv_sec;
+									}
 
 								tvnow = (struct timeval*)malloc(sizeof(struct timeval));
 								gettimeofday(tvnow, NULL);
@@ -114,6 +133,11 @@ int main()
 								//2. add end event
 								tvthen->tv_sec = tvstart->tv_sec + u->a + u->d;
 								tvthen->tv_usec = tvstart->tv_usec;
+								
+								fprintf(ftime, "%ld\n", tvthen->tv_sec);
+								if(tmax==0 || tvthen->tv_sec>tmax)	{
+									tmax = tvthen->tv_sec;
+									}
 
 								tvnow = (struct timeval*)malloc(sizeof(struct timeval));
 								gettimeofday(tvnow, NULL);
@@ -127,12 +151,28 @@ int main()
 
 								e = evtimer_new(base, cb_end, (void*)ctx);
 								evtimer_add(e, tvperiod);	
+
+								
 				}
 				printf("user preparation ended\n");
+				fclose(ftime);
 
-				event_base_dispatch(base);	
+				//debug
+				tvthen = (struct timeval*)malloc(sizeof(struct timeval));
+				gettimeofday(tvthen, NULL);
+				temustart = tvthen->tv_sec;
 
 				//run loop
-				printf("aaa\n");
+				event_base_dispatch(base);	
+
+				//debug
+				gettimeofday(tvthen, NULL);
+				temuend = tvthen->tv_sec;
+
+				printf("emu:\t\t %ld~%ld\t(%ld)\n", temustart, temuend, temuend-temustart);
+				printf("planned:\t %ld~%ld\t(%ld)\n", tmin, tmax, tmax-tmin); 
+				printf("endtime diff: %ld\n", temuend-tmax);
+				
+				printf("end\n");
 }
 

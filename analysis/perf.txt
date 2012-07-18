@@ -1,0 +1,39 @@
+======
+user=200,000
+maxconcurrent=51677
+max_join_leave=1667(j)+1667(l)
+1box(s+r+m)
+
+emu:             1342579060~1342579218  (158)
+planned:         1342579068~1342579217  (149)
+endtime diff: 1(可认为0?)
+
+======
+user=250,000
+maxconcurrent=64573
+max_join_leave=2083(j)+2084(l)
+1box(s+r+m)
+
+emu:             1342581687~1342581851  (164)
+planned:         1342581695~1342581844  (149)
+endtime diff: 7
+
+======
+user=300,000
+maxconcurrent=77500
+max_join_leave=2500(j)+2500(l)
+1box(s+r+m)
+
+emu:             1342579245~1342579428  (183)
+planned:         1342579253~1342579402  (149)
+endtime diff: 26
+
+
+===todo===
+在44上测很慢；
+
+测不在一台机器上：
+s在44，m和r在16上——很慢(44好像有问题)
+emu:             1342599867~1342600415  (548)
+planned:         1342599875~1342600024  (149)
+endtime diff: 391

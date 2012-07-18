@@ -45,7 +45,15 @@ static void shuffle_int(int* data, int n)
 
 
 //return "total" count of integers as durations
-void generate_duration(int total, int* t_durations)
+void generate_duration(int total, int* t_durations){
+	int i;
+	for(i=0;i<total;i++)	{
+		t_durations[i] = 30;
+		}
+}
+
+
+void generate_duration_old(int total, int* t_durations)
 {
 				duration* d;
 				int i,j,k;
@@ -147,7 +155,7 @@ void generate_users(int total, user** users)
 //								printf("sizeof user=%d\n", sizeof(user));
 								users[i]->d = durations[i];
 								//mmm: prepair user start time
-								users[i]->a = 5;
+								users[i]->a = i%120+5;
 								sprintf(users[i]->id, "%d", i+1);
 //printf("userid put=> %s\n", users[i]->id);
 				}

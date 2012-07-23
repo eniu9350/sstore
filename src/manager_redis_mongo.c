@@ -43,8 +43,8 @@ void mr_userend(manager_mr* mgr, user* u)
 				void* reply;
 
 				gettimeofday(&tv, NULL);
-				redisCommand(r, "SREM user.id %s", u->id);
-				reply = redisCommand(r, "GET user#%s.starttime", u->id);
+				//redisCommand(r, "SREM user.id %s", u->id);
+				//reply = redisCommand(r, "GET user#%s.starttime", u->id);
 
 				bson_init( b );
 				//bson_append_new_oid( b, "_id" );

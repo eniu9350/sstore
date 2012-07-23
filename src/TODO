@@ -38,3 +38,27 @@ sum(c(tfreq[,2]));
 #vv=c(t[,2])
 #ww = table(vv)
 #plot(ww)
+
+
+=====
+评价object framework在服务端运行的效率。(但是单机能说明什么问题?)
+
+
+====Journal====
+0717:
+
+
+0718:
+换64位测试单机3服务、双机单服务；
+
+0719:
+lua integrate; test command add; test file add, lib add in Makefile; //todo: bson integrate, redis command inner call test
+//todo: paper point
+
+
+0723:
+ofdeleteandlog: bson para is not needed!!!
+endtime not set!
+provide error info when not connected to mongod when starting redisex
+show version(new or orgin) at startup
+相关论文

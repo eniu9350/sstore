@@ -79,7 +79,7 @@ int main()
 				base = event_base_new();
 
 				//nuser = 5000*1000;
-				nuser = 250000;
+				nuser = 200*1000;
 
 				mrof_register(mgr, "user", attnames, 2);
 

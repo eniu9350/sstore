@@ -20,7 +20,7 @@ print(tmax);
 #count users at each second
 nusers<-matrix(0,nrow=tmax-tmin+1,ncol=1)
 #counting joining and leaving users at each second
-njlusers<-matrix(0,nrow=tmax-tmin+1,ncol=2)
+njlusers<-matrix(0,nrow=tmax-tmin+1,ncol=3)
 
 for(i in 1:(tmax-tmin+1)) {
   njlusers[i,1] = 0;
@@ -35,10 +35,15 @@ for(i in 1:nrow(t)) {
   njlusers[t[i,2]-tmin+1, 2] = njlusers[t[i,2]-tmin+1, 2]+1;
 }
 
-par( mfrow = c( 3, 1 ) )
+for(i in 1:nrow(njlusers)){
+  njlusers[i,3] = njlusers[i,1] + njlusers[i,2];
+}
+
+par( mfrow = c( 2, 2 ) )
 plot(nusers);
 plot(njlusers[,1])
 plot(njlusers[,2])
+plot(njlusers[,3])
 
 #npart<-matrix(0,nrow=100,ncol=1)
 

@@ -52,13 +52,7 @@ int main()
 				user** users;
 				user* u;
 
-				char** attnames;
-				char v1[10] = "id";
-				char v2[10] = "starttime";
-				int n = 2;
-				attnames = (char**)malloc(n*sizeof(char*));	
-				attnames[0] = v1;
-				attnames[1] = v2;
+				
 
 				//for debug
 				FILE* ftime;
@@ -72,7 +66,7 @@ int main()
 				sstore_lua_init();
 
 				//init db
-				mgr = mr_init();
+				mgr = mgr_init();
 				//clear data
 				//mr_cleardata(mgr);
 
@@ -81,7 +75,7 @@ int main()
 				//nuser = 5000*1000;
 				nuser = 1000*1000;
 
-				of_register(mgr, "user", attnames, 2);
+				
 
 				//mmm: prepair user	
 				users = (user**)malloc(nuser*sizeof(user*));

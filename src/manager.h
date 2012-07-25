@@ -5,6 +5,8 @@
 #include "hiredis.h"
 #include <mongo.h>
 
+/* application specific manager */
+
 typedef struct _manager_mr	{
 	redisContext* r;
 	mongo m[1];

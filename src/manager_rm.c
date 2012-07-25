@@ -67,11 +67,23 @@ void mgr_cbuserend(evutil_socket_t fd, short events, void* arg)
 
 manager_mr* mgr_init()
 {
+				char** attnames;
+				char v1[10] = "id";
+				char v2[10] = "starttime";
+				int n = 2;
+				attnames = (char**)malloc(n*sizeof(char*));	
+				attnames[0] = v1;
+				attnames[1] = v2;
+
+
 				manager_mr* mgr = (manager_mr*)malloc(sizeof(manager_mr));
-				mr_init_redis(mgr);
-				mr_init_mongo(mgr);
+				mgr_init_redis(mgr);
+				mgr_init_mongo(mgr);
 
 				mgr_cleardata();
+
+				of_register(mgr, "user", attnames, 2);
+
 				
 				return mgr;
 }

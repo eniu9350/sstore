@@ -18,7 +18,7 @@ int main__()
 				*/
 }
 
-void mrof_register(manager_mr* mgr, char* classname, char** attnames, int nattnames)
+void of_register(manager_mr* mgr, char* classname, char** attnames, int nattnames)
 {
 	//1. store class att names at redis
 	redisContext* r = mgr->r;
@@ -37,7 +37,7 @@ void mrof_register(manager_mr* mgr, char* classname, char** attnames, int nattna
 	mapex_set(key, attnames, nattnames);
 }
 
-void mrof_create(manager_mr* mgr, char* classname, bson* b)
+void of_create(manager_mr* mgr, char* classname, bson* b)
 {
 				//get id
 				char* id;
@@ -80,7 +80,7 @@ void mrof_create(manager_mr* mgr, char* classname, bson* b)
 }
 
 
-void mrof_update(manager_mr* mgr, char* classname, bson* b, char* attname)
+void of_update(manager_mr* mgr, char* classname, bson* b, char* attname)
 {
 				//get id
 				bson_iterator i[1];
@@ -105,7 +105,7 @@ void mrof_update(manager_mr* mgr, char* classname, bson* b, char* attname)
 }
 
 
-void mrof_delete(manager_mr* mgr, char* classname, bson* b)
+void of_delete(manager_mr* mgr, char* classname, bson* b)
 {
 				//get id
 				bson_iterator i[1];
@@ -129,7 +129,7 @@ void mrof_delete(manager_mr* mgr, char* classname, bson* b)
 }
 
 
-void mrof_deleteAndLog(manager_mr* mgr, char* classname, bson* b)
+void of_deleteAndLog(manager_mr* mgr, char* classname, bson* b)
 {
 				char **values;
 				int i;

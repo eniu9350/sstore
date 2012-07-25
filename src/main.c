@@ -79,9 +79,9 @@ int main()
 				base = event_base_new();
 
 				//nuser = 5000*1000;
-				nuser = 200*1000;
+				nuser = 1000*1000;
 
-				mrof_register(mgr, "user", attnames, 2);
+				of_register(mgr, "user", attnames, 2);
 
 				//mmm: prepair user	
 				users = (user**)malloc(nuser*sizeof(user*));
@@ -169,6 +169,7 @@ int main()
 				gettimeofday(tvthen, NULL);
 				temuend = tvthen->tv_sec;
 
+				printf("user: %d\n", nuser);
 				printf("emu:\t\t %ld~%ld\t(%ld)\n", temustart, temuend, temuend-temustart);
 				printf("planned:\t %ld~%ld\t(%ld)\n", tmin, tmax, tmax-tmin); 
 				printf("endtime diff: %ld\n", temuend-tmax);

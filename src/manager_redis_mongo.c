@@ -19,7 +19,7 @@ void mr_userstart(manager_mr* mgr, user* u)
 				bson_append_string( b, "id", u->id );
 				bson_append_long( b, "starttime", tv.tv_sec);
 				bson_finish( b );
-				mrof_create(mgr, "user", b);
+				of_create(mgr, "user", b);
 				//redisCommand(r, "SET user#%s.starttime %ld", u->id, tv.tv_sec);
 				//redisCommand(r, "SADD user.id %s", u->id);
 
@@ -52,7 +52,7 @@ void mr_userend(manager_mr* mgr, user* u)
 				bson_append_long( b, "starttime", 1);
 				bson_finish( b );
 
-				mrof_deleteAndLog(mgr, "user", b, 2);	//mmm: temp 2
+				of_deleteAndLog(mgr, "user", b, 2);	//mmm: temp 2
 
 				if(_nend==0)	{
 								printf("e#%d\n", _nend);

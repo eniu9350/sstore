@@ -2,10 +2,10 @@ CC=gcc
 ww=aa
 
 rex: clean
-	$(CC) --std=c99 -g -o sstore -I/usr/include -L. -L/usr/local/lib  mapex.c util.c object_framework_redisex.c main.c manager_redisex.c input_generator.c -lm -levent -lhiredis -lmongoc -llua
+	$(CC) --std=c99 -g -o sstore -I/usr/include -L. -L/usr/local/lib  mapex.c util.c object_framework_rex.c main.c manager_redisex.c input_generator.c -lm -levent -lhiredis -lmongoc -llua
 
 rm: clean
-	$(CC) --std=c99 -g -o sstore -I/usr/include -L. -L/usr/local/lib  mapex.c util.c object_framework.c main.c manager_redis_mongo.c input_generator.c -lm -levent -lhiredis -lmongoc -llua
+	$(CC) --std=c99 -g -o sstore -I/usr/include -L. -L/usr/local/lib  mapex.c util.c object_framework_rm.c main.c manager_redis_mongo.c input_generator.c -lm -levent -lhiredis -lmongoc -llua
 
 
 e: clean

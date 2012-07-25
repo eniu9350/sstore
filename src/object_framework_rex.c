@@ -18,7 +18,7 @@ int main__()
 				*/
 }
 
-void mrof_register(manager_mr* mgr, char* classname, char** attnames, int nattnames)
+void of_register(manager_mr* mgr, char* classname, char** attnames, int nattnames)
 {
 
 	redisContext* r = mgr->r;
@@ -28,7 +28,7 @@ void mrof_register(manager_mr* mgr, char* classname, char** attnames, int nattna
 	redisCommand(r, "OFREGISTER user starttime |");
 }
 
-void mrof_create(manager_mr* mgr, char* classname, bson* b)
+void of_create(manager_mr* mgr, char* classname, bson* b)
 {
 				//get id
 				char* id;
@@ -95,7 +95,7 @@ void mrof_create(manager_mr* mgr, char* classname, bson* b)
 }
 
 
-void mrof_update(manager_mr* mgr, char* classname, bson* b, char* attname)
+void of_update(manager_mr* mgr, char* classname, bson* b, char* attname)
 {
 				//not implemented yet
 				printf("not impl yet!!!\n");
@@ -125,7 +125,7 @@ void mrof_update(manager_mr* mgr, char* classname, bson* b, char* attname)
 }
 
 
-void mrof_delete(manager_mr* mgr, char* classname, bson* b)
+void of_delete(manager_mr* mgr, char* classname, bson* b)
 {
 				//not implemented yet
 				printf("not impl yet!!!\n");
@@ -156,7 +156,7 @@ void mrof_delete(manager_mr* mgr, char* classname, bson* b)
 }
 
 
-void mrof_deleteAndLog(manager_mr* mgr, char* classname, bson* b)
+void of_deleteAndLog(manager_mr* mgr, char* classname, bson* b)
 {
 			
 

@@ -1,10 +1,10 @@
 CC=gcc
 ww=aa
 
-new: clean
+rex: clean
 	$(CC) --std=c99 -g -o sstore -I/usr/include -L. -L/usr/local/lib  mapex.c util.c object_framework_redisex.c main.c manager_redisex.c input_generator.c -lm -levent -lhiredis -lmongoc -llua
 
-origin: clean
+rm: clean
 	$(CC) --std=c99 -g -o sstore -I/usr/include -L. -L/usr/local/lib  mapex.c util.c object_framework.c main.c manager_redis_mongo.c input_generator.c -lm -levent -lhiredis -lmongoc -llua
 
 

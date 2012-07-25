@@ -74,7 +74,7 @@ int main()
 				//init db
 				mgr = mr_init();
 				//clear data
-				mr_cleardata(mgr);
+				//mr_cleardata(mgr);
 
 				base = event_base_new();
 

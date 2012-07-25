@@ -16,10 +16,12 @@ typedef struct _cbcontext_mr	{
 	user* u;
 }cbcontext_mr;
 
-void mr_userstart(manager_mr* mgr, user* u);
-void mr_userend(manager_mr* mgr, user* u);
-manager_mr* mr_init();
-void mr_cleardata(manager_mr* mgr);
+
+void mgr_cbuserstart(evutil_socket_t fd, short events, void* arg);
+void mgr_cbuserend(evutil_socket_t fd, short events, void* arg);
+manager_mr* mgr_init();
+
+
 
 
 #endif

@@ -13,9 +13,7 @@ static void mgr_init_redis(manager_mr* mgr)
 
 static void mgr_cleardata(manager_mr* mgr)
 {
-
 	redisCommand(mgr->r, "FLUSHALL");
-	
 }
 
 //--- public ------------

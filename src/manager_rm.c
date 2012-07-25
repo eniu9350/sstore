@@ -1,8 +1,43 @@
-#include "manager_redis_mongo.h"
+#include "manager.h"
 
 int _nstart = 0;
 int _nend = 0;
 
+//--- local ------------
+static void mgr_cleardata(manager_mr* mgr)
+{
+	if(mongo_cmd_drop_db(mgr->m, "sstore")!=MONGO_OK)	{
+		printf("clear mongodb db error in mr_cleardata()\n");
+		}
+	redisCommand(mgr->r, "FLUSHALL");
+	
+}
+
+
+static int mgr_init_mongo(manager_mr* mgr)
+{
+				int status;
+				mongo* conn = mgr->m;
+				status = mongo_connect( conn, "192.168.8.16", 27017 );
+
+				if( status != MONGO_OK ) {
+								switch ( conn->err ) {
+												case MONGO_CONN_SUCCESS:    printf( "connection succeeded\n" ); break;
+												case MONGO_CONN_NO_SOCKET:  printf( "no socket\n" ); return 1;
+												case MONGO_CONN_FAIL:       printf( "connection failed\n" ); return 1;
+												case MONGO_CONN_NOT_MASTER: printf( "not master\n" ); return 1;
+								}
+				}
+}
+
+
+static void mgr_init_redis(manager_mr* mgr)
+{
+				redisContext* r = redisConnect("192.168.8.16", 6379);
+				mgr->r = r;
+}
+
+//--- public ------------
 void mgr_cbuserstart(evutil_socket_t fd, short events, void* arg)
 {
 				cbcontext_mr* ctx = (cbcontext_mr*)arg;
@@ -80,7 +115,7 @@ manager_mr* mgr_init()
 				mgr_init_redis(mgr);
 				mgr_init_mongo(mgr);
 
-				mgr_cleardata();
+				mgr_cleardata(mgr);
 
 				of_register(mgr, "user", attnames, 2);
 
@@ -88,39 +123,7 @@ manager_mr* mgr_init()
 				return mgr;
 }
 
-//--- local ------------
-static void mgr_cleardata(manager_mr* mgr)
-{
-	if(mongo_cmd_drop_db(mgr->m, "sstore")!=MONGO_OK)	{
-		printf("clear mongodb db error in mr_cleardata()\n");
-		}
-	redisCommand(mgr->r, "FLUSHALL");
-	
-}
 
-
-static int mgr_init_mongo(manager_mr* mgr)
-{
-				int status;
-				mongo* conn = mgr->m;
-				status = mongo_connect( conn, "192.168.8.16", 27017 );
-
-				if( status != MONGO_OK ) {
-								switch ( conn->err ) {
-												case MONGO_CONN_SUCCESS:    printf( "connection succeeded\n" ); break;
-												case MONGO_CONN_NO_SOCKET:  printf( "no socket\n" ); return 1;
-												case MONGO_CONN_FAIL:       printf( "connection failed\n" ); return 1;
-												case MONGO_CONN_NOT_MASTER: printf( "not master\n" ); return 1;
-								}
-				}
-}
-
-
-static void mgr_init_redis(manager_mr* mgr)
-{
-				redisContext* r = redisConnect("192.168.8.16", 6379);
-				mgr->r = r;
-}
 
 
 

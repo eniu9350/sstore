@@ -5,6 +5,11 @@
 #include "hiredis.h"
 #include <mongo.h>
 
+#include <event2/event-config.h>
+#include <event2/event.h>
+#include <event2/util.h>
+
+
 /* application specific manager */
 
 typedef struct _manager_mr	{

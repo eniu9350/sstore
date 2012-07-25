@@ -5,7 +5,7 @@
 #include "hiredis.h"
 #include "input_generator.h"
 #include "user.h"
-#include "manager_redis_mongo.h"
+#include "manager.h"
 
 #include <event2/event-config.h>
 #include <event2/event.h>
@@ -17,21 +17,6 @@
 #include <lauxlib.h>
 #include <lualib.h>
 
-
-#include "manager_redis_mongo.h"
-
-void cb_end(evutil_socket_t fd, short events, void* arg)
-{
-				cbcontext_mr* ctx = (cbcontext_mr*)arg;
-				mr_userend(ctx->mgr, ctx->u);
-}
-
-
-void cb_start(evutil_socket_t fd, short events, void* arg)
-{
-				cbcontext_mr* ctx = (cbcontext_mr*)arg;
-				mr_userstart(ctx->mgr, ctx->u);
-}
 
 lua_State* L;
 
@@ -120,7 +105,7 @@ int main()
 								ctx->mgr = mgr;
 								ctx->u = u;
 
-								e = evtimer_new(base, cb_start, (void*)ctx);
+								e = evtimer_new(base, mgr_cbuserstart, (void*)ctx);
 								//printf("tvperiod s=%d\n", tvperiod->tv_sec);
 								evtimer_add(e, tvperiod);	
 
@@ -143,7 +128,7 @@ int main()
 								ctx->mgr = mgr;
 								ctx->u = u;
 
-								e = evtimer_new(base, cb_end, (void*)ctx);
+								e = evtimer_new(base, mgr_cbuserend, (void*)ctx);
 								evtimer_add(e, tvperiod);	
 
 								

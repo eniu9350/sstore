@@ -2,7 +2,7 @@
 #define _SSTORE_OBJECT_FRAMEWORK_H_
 
 #include <bson.h>
-#include "manager_redis_mongo.h"
+#include "manager.h"
 
 void of_register(manager_mr* mgr, char* classname, char** attnames, int nattnames);
 void of_create(manager_mr* mgr, char* classname, bson* b);

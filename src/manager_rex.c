@@ -1,7 +1,25 @@
-#include "manager_redis_mongo.h"
+#include "manager.h"
 
 int _nstart = 0;
 int _nend = 0;
+
+//--- local ------------
+static void mgr_init_redis(manager_mr* mgr)
+{
+				redisContext* r = redisConnect("192.168.8.16", 6379);
+				mgr->r = r;
+}
+
+
+static void mgr_cleardata(manager_mr* mgr)
+{
+
+	redisCommand(mgr->r, "FLUSHALL");
+	
+}
+
+//--- public ------------
+
 
 void mgr_cbuserstart(evutil_socket_t fd, short events, void* arg)
 {
@@ -82,28 +100,14 @@ manager_mr* mgr_init()
 
 
 				manager_mr* mgr = (manager_mr*)malloc(sizeof(manager_mr));
-				mr_init_redis(mgr);
+				mgr_init_redis(mgr);
 				//mr_init_mongo(mgr);
 
-				mgr_cleardata();
+				mgr_cleardata(mgr);
 
 				of_register(mgr, "user", attnames, 2);
 				
 				return mgr;
 }
 
-//--- local ------------
-static void mr_init_redis(manager_mr* mgr)
-{
-				redisContext* r = redisConnect("192.168.8.16", 6379);
-				mgr->r = r;
-}
-
-
-static void mr_cleardata(manager_mr* mgr)
-{
-
-	redisCommand(mgr->r, "FLUSHALL");
-	
-}
 

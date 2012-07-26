@@ -25,7 +25,7 @@ void of_register(manager_mr* mgr, char* classname, char** attnames, int nattname
 	
 	//config saving options
 	//redisCommand(r, "OFREGISTER user starttime endtime | updatetime");
-	redisCommand(r, "OFREGISTER user starttime |");
+	redisCommand(r, "OFREGISTER user id starttime |");
 }
 
 void of_create(manager_mr* mgr, char* classname, bson* b)

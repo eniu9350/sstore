@@ -47,6 +47,10 @@ int main()
 				long temustart=0;
 				long temuend=0;
 
+				//stat
+				double st_offeredload;
+				double st_finishedload;
+
 				//init lua environment
 				sstore_lua_init();
 
@@ -148,10 +152,14 @@ int main()
 				gettimeofday(tvthen, NULL);
 				temuend = tvthen->tv_sec;
 
+				//stat
+				st_offeredload = nuser/60.0;
+				st_finishedload = st_offeredload*90.0/(90.0+temuend-tmax);
 				printf("user: %d\n", nuser);
 				printf("emu:\t\t %ld~%ld\t(%ld)\n", temustart, temuend, temuend-temustart);
 				printf("planned:\t %ld~%ld\t(%ld)\n", tmin, tmax, tmax-tmin); 
 				printf("endtime diff: %ld\n", temuend-tmax);
+				printf("finishedload/offeredload =  %f/%f = %f\n", st_finishedload, st_offeredload, st_finishedload/st_offeredload);				
 				
 				printf("end\n");
 }

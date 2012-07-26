@@ -155,6 +155,62 @@ endtime diff: 146
 top cpu(r+m+s)=150%
 actual = 12.7k
 
+*********** 1box, new, adjusted ****************
+user: 400000
+emu:             1343272490~1343272647  (157)
+planned:         1343272497~1343272646  (149)
+endtime diff: 1
+finishedload/offeredload =  6593.406593/6666.666667 = 0.989011
+
+
+user: 600000
+emu:             1343272187~1343272342  (155)
+planned:         1343272192~1343272341  (149)
+endtime diff: 1
+finishedload/offeredload =  9890.109890/10000.000000 = 0.989011
+
+user: 800000
+emu:             1343271723~1343271877  (154)
+planned:         1343271727~1343271876  (149)
+endtime diff: 1
+finishedload/offeredload =  13186.813187/13333.333333 = 0.989011
+
+
+user: 1000,000
+emu:             1343270363~1343270532  (169)
+planned:         1343270365~1343270514  (149)
+endtime diff: 18
+finishedload/offeredload =  13888.888889/16666.666667 = 0.833333
+
+user: 1200000
+emu:             1343272925~1343273107  (182)
+planned:         1343272926~1343273075  (149)
+endtime diff: 32
+finishedload/offeredload =  14754.098361/20000.000000 = 0.737705
+
+user: 1400000
+emu:             1343273206~1343273420  (214)
+planned:         1343273206~1343273355  (149)
+endtime diff: 65
+finishedload/offeredload =  13548.387097/23333.333333 = 0.580645
+
+user: 1600000
+emu:             1343273483~1343273721  (238)
+planned:         1343273481~1343273630  (149)
+endtime diff: 91
+finishedload/offeredload =  13259.668508/26666.666667 = 0.497238
+
+user: 1800000
+emu:             1343273909~1343274191  (282)
+planned:         1343273905~1343274054  (149)
+endtime diff: 137
+finishedload/offeredload =  11894.273128/30000.000000 = 0.396476
+
+user: 2000000
+emu:             1343284542~1343284848  (306)
+planned:         1343284537~1343284686  (149)
+endtime diff: 162
+finishedload/offeredload =  11904.761905/33333.333333 = 0.357143
 
 *********** 2box, new ****************
 user: 200,000

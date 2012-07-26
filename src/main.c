@@ -58,17 +58,17 @@ int main()
 				base = event_base_new();
 
 				//nuser = 5000*1000;
-				nuser = 1000*1000;
-
+				//nuser = 1000*1000;
+				LUA_PCG_INT("nuser", nuser);
+				//printf("nuser =============%d\n", nuser);
 				
-
 				//mmm: prepair user	
 				users = (user**)malloc(nuser*sizeof(user*));
 				generate_users(nuser, users);
 
 
 				//debug: save starttime and endtime to file
-				if((ftime = fopen("../analysis/time", "w"))==NULL)	{
+				if((ftime = fopen("analysis/time", "w"))==NULL)	{
 					printf("time file error!\n");
 					}
 

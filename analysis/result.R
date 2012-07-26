@@ -15,11 +15,13 @@ d[10,] = c(100.0/3, 12.71) #user 2000k
 #d[8,] = c(10.0/3, 10.0/3)
 plot(d[,1], d[,2], type="l", xlim=c(0,40), ylim=c(0,20), col="red", xlab="offered load (kreq/s)", ylab="throughput (kreq/s)")
 
-dold<-matrix(0,nrow=4,ncol=2)
-dold[1,] = c(10.0/3, 3.30)  #user 200k
-dold[2,] = c(20.0/3, 4.76)  #user 400k
-dold[3,] = c(30.0/3, 4.48)  #user 600k
-dold[4,] = c(40.0/3, 4.30)  #user 800k
+dold<-matrix(0,nrow=6,ncol=2)
+dold[1,] = c(0, 0)  #user 100k  //not test
+dold[2,] = c(10.0/3, 3.30)  #user 200k
+dold[3,] = c(20.0/3, 4.76)  #user 400k
+dold[4,] = c(30.0/3, 4.48)  #user 600k
+dold[5,] = c(40.0/3, 4.30)  #user 800k
+dold[6,] = c(50.0/3, 4.24)  #user 1000k
 lines(dold, col="green")
 
 

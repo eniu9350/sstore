@@ -46,5 +46,10 @@ void sstore_lua_init()
 				luaopen_string(L);
 				luaopen_math(L);
 
+				if (luaL_loadfile(L, "conf/sstore.conf") || lua_pcall(L, 0, 0, 0)) {
+					error(L, "cannot run configuration file: %s",
+							lua_tostring(L, -1));
+				}
+
 
 }

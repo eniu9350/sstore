@@ -106,11 +106,11 @@ v = ofvalue_createString(reply->integer);
 }
 
 
-void of_update(manager_mr* mgr, char* classname, bson* b, char* attname)
+void of_update(manager_mr* mgr, char* classname, char* id, char* attname, char* attvalue)
 {
-				//not implemented yet
-				printf("not impl yet!!!\n");
-			
+				//char cmd[255];
+//				sprintf("
+				redisCommand(mgr->r, "SET %s#%s.%s %s", classname, id, attname, attvalue);
 }
 
 

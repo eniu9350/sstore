@@ -73,28 +73,9 @@ ofvalue* of_get(manager_mr* mgr, char* classname, char* id, char* attname)
 }
 
 
-void of_update(manager_mr* mgr, char* classname, bson* b, char* attname)
+void of_update(manager_mr* mgr, char* classname, char* id, char* attname, char* attvalue)
 {
-				//get id
-				bson_iterator i[1];
-				bson_type type;
-				char* id;
-				type = bson_find( i, b, "id" );
-				id = bson_iterator_string(i);
-
-				//get value and update
-				type = bson_find( i, b, attname );
-				switch(type)	{
-								case BSON_STRING:
-												redisCommand(mgr->r, "SET %s#%s.%s %s", classname, id, attname, bson_iterator_string(i));
-												break;
-								case BSON_LONG:
-												redisCommand(mgr->r, "SET %s#%s.%s %ld", classname, id, attname, bson_iterator_long(i));
-												break;
-								default:
-												printf("unknown bson type in mrof_create!\n");
-												break;
-				}
+				redisCommand(mgr->r, "SET %s#%s.%s %s", classname, id, attname, attvalue);
 }
 
 

@@ -32,8 +32,23 @@ else  { \
 }
 
 
+//value def
+typedef union _ofvalue	{
+	char* s;
+	long l;
+	int n;
+}ofvalue;
+
+
 int timeval_subtract (struct timeval* result, struct timeval* x, struct timeval* y);
 
 void sstore_lua_init();
+
+//value ops----------------
+ofvalue* ofvalue_create();
+ofvalue* ofvalue_createInt(int n);
+ofvalue* ofvalue_createLong(long l);
+ofvalue* ofvalue_createString(char* s);
+
 
 #endif

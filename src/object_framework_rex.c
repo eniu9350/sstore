@@ -5,18 +5,7 @@
 
 #include "mapex.h"
 
-int main__()
-{
-				printf("www\n");
-/*
-				bson b[1];
-				bson_init( b );
-				bson_append_new_oid( b, "_id" );
-//				bson_append_string( b, "id", u->id );
-//				bson_append_long( b, "endtime", tv.tv_sec);
-				bson_finish( b );
-				*/
-}
+
 
 void of_register(manager_mr* mgr, char* classname, char** attnames, int nattnames)
 {
@@ -47,20 +36,12 @@ void of_create(manager_mr* mgr, char* classname, bson* b)
 				strcat(cmd, " ");
 				strcat(cmd, id);
 				
-
-				//add id to idset of the class
-				//redisCommand(mgr->r, "SADD %s.id %s", classname, id); 
-
 				//iterate through members
 				bson_iterator_init(i, b);
 
 				do	{
 								type = bson_iterator_next(i);
 								key = bson_iterator_key(i);
-
-
-								
-
 
 								//mmm: assume all string or long
 
@@ -94,34 +75,42 @@ void of_create(manager_mr* mgr, char* classname, bson* b)
 				//printf("cmd--------->%s\n", cmd);
 }
 
+ofvalue* of_get(manager_mr* mgr, char* classname, char* id, char* attname)
+{
+							ofvalue* v = NULL;
+							redisReply* reply;
+							reply = (redisReply*)redisCommand(mgr->r, "GET %s#%s.%s", classname, id, attname);
+							//printf("persist value name %s\n", values[i]);
+							if(reply!=NULL) {
+											switch(reply->type) {
+															case REDIS_REPLY_STRING:
+v = ofvalue_createString(reply->str);
+																			//bson_append_string( bnew, values[i], reply->str);
+																			//printf("reply is string --- %s\n", reply->str);
+																			break;
+															case REDIS_REPLY_INTEGER:
+																			//bson_append_long( bnew, values[i], reply->integer);
+v = ofvalue_createString(reply->integer);																			
+																			//printf("reply is long --- %ld\n", reply->integer);
+																			break;
+															default:
+																			printf("unrecogonized type of response in of_get\n");
+																			break;
+											}
+							}else {
+											printf("reply null in of_get\n");
+							}
+
+	return v;
+	
+}
+
 
 void of_update(manager_mr* mgr, char* classname, bson* b, char* attname)
 {
 				//not implemented yet
 				printf("not impl yet!!!\n");
-				
-				/*
-				//get id
-				bson_iterator i[1];
-				bson_type type;
-				char* id;
-				type = bson_find( i, b, "id" );
-				id = bson_iterator_string(i);
-
-				//get value and update
-				type = bson_find( i, b, attname );
-				switch(type)	{
-								case BSON_STRING:
-												redisCommand(mgr->r, "SET %s#%s.%s %s", classname, id, attname, bson_iterator_string(i));
-												break;
-								case BSON_LONG:
-												redisCommand(mgr->r, "SET %s#%s.%s %ld", classname, id, attname, bson_iterator_long(i));
-												break;
-								default:
-												printf("unknown bson type in mrof_create!\n");
-												break;
-				}
-				*/
+			
 }
 
 
@@ -129,30 +118,7 @@ void of_delete(manager_mr* mgr, char* classname, bson* b)
 {
 				//not implemented yet
 				printf("not impl yet!!!\n");
-					
-				/*
 
-				//get id
-				bson_iterator i[1];
-				bson_type type;
-				char* id;
-				const char* key;
-				type = bson_find( i, b, "id" );
-				id = bson_iterator_string(i);
-
-				//remove id from idset of the class
-				redisCommand(mgr->r, "SREM %s.id %s", classname, id); 
-
-				//iterate through members
-				bson_iterator_init(i, b);
-				do	{
-								type = bson_iterator_next(i);
-								key = bson_iterator_key(i);
-
-								redisCommand(mgr->r, "DEL %s#%s.%s", classname, id, key);
-				}while(type!=NULL);	//mmm: right?
-
-				*/
 }
 
 

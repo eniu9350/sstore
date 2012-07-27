@@ -3,9 +3,11 @@
 
 #include <bson.h>
 #include "manager.h"
+#include "util.h"
 
 void of_register(manager_mr* mgr, char* classname, char** attnames, int nattnames);
 void of_create(manager_mr* mgr, char* classname, bson* b);
+ofvalue* of_get(manager_mr* mgr, char* classname, char* id, char* attname);
 //b -- only get id
 void of_update(manager_mr* mgr, char* classname, bson* b, char* attname);
 //b -- only get id, attnames

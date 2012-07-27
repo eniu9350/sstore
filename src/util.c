@@ -53,3 +53,34 @@ void sstore_lua_init()
 
 
 }
+
+//--------------value
+ofvalue* ofvalue_create()
+{
+	ofvalue* v;
+	v = (ofvalue*)malloc(sizeof(ofvalue));
+	return v;
+}
+
+ofvalue* ofvalue_createInt(int n)
+{
+	ofvalue* v = ofvalue_create();
+	v->n = n;
+	return v;
+}
+
+ofvalue* ofvalue_createLong(long l)
+{
+	ofvalue* v = ofvalue_create();
+	v->l = l;
+	return v;
+}
+
+ofvalue* ofvalue_createString(char* s)
+{
+	ofvalue* v = ofvalue_create();
+	v->s = s;
+	return v;
+}
+
+

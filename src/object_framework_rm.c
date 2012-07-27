@@ -5,18 +5,6 @@
 
 #include "mapex.h"
 
-int main__()
-{
-				printf("www\n");
-/*
-				bson b[1];
-				bson_init( b );
-				bson_append_new_oid( b, "_id" );
-//				bson_append_string( b, "id", u->id );
-//				bson_append_long( b, "endtime", tv.tv_sec);
-				bson_finish( b );
-				*/
-}
 
 void of_register(manager_mr* mgr, char* classname, char** attnames, int nattnames)
 {
@@ -77,6 +65,11 @@ void of_create(manager_mr* mgr, char* classname, bson* b)
 																break;
 								}
 				}while(type!=BSON_EOO);	//mmm: right?
+}
+
+ofvalue* of_get(manager_mr* mgr, char* classname, char* id, char* attname)
+{
+	return NULL;
 }
 
 

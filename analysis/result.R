@@ -16,15 +16,19 @@ rex[1,] = c(10.0/3, 10.0/3)#!user 200k
 rex[2,] = c(20.0/3, 20.0/3)#!user 400k
 rex[3,] = c(30.0/3, 30.0/3)#!user 600k
 rex[4,] = c(40.0/3, 40.0/3) #!user 800k
-rex[5,] = c(50.0/3, 13.89) #!user 1000k
+rex[5,] = c(50.0/3, 14.29) #!user 1000k
 rex[6,] = c(60.0/3, 14.75) #!user 1200k
 rex[7,] = c(70.0/3, 13.55)  #!user 1400k
 rex[8,] = c(80.0/3, 13.26)  #!user 1600k
 rex[9,] = c(90.0/3, 11.89)  #!user 1800k
 #rex[10,] = c(100.0/3, 11.90) #!user 2000k
 
-
-
+rex_2box<-matrix(0,nrow=5,ncol=2)
+rex_2box[1,] = c(10.0/3, 3.30)#!user 200k
+rex_2box[2,] = c(20.0/3, 3.38)#!user 400k
+rex_2box[3,] = c(30.0/3, 3.01)#!user 600k
+rex_2box[4,] = c(40.0/3, 2.86) #!user 800k
+rex_2box[5,] = c(50.0/3, 3.01) #!user 1000k
 
 
 #d[6,] = c(10.0/3, 10.0/3)
@@ -42,6 +46,9 @@ dold[4,] = c(30.0/3, 4.48)  #user 600k
 dold[5,] = c(40.0/3, 4.30)  #user 800k
 dold[6,] = c(50.0/3, 4.24)  #user 1000k
 lines(dold, col="green")
+
+
+lines(rex_2box, col="blue")
 
 
 
